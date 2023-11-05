@@ -1,7 +1,7 @@
 import java.io.*;
 import java.net.*;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Server {
@@ -65,12 +65,12 @@ class ClientHandler extends Thread {
                         throw new RuntimeException(e);
                     }
                 } else {
-                    System.out.println("Критична помилка в обчисленнях f(x).");
+                    System.err.println("Критична помилка в обчисленнях f(x).");
                 }
             });
 
             Thread gxThread = new Thread(() -> {
-                Optional<Double> gxOptional = Computation.compfunc(x,2);
+                Optional<Double> gxOptional = Computation.compfunc(x,1);
                 if (gxOptional.isPresent()) {
                     gx = gxOptional.get();
                     try {
@@ -79,7 +79,7 @@ class ClientHandler extends Thread {
                         throw new RuntimeException(e);
                     }
                 } else {
-                    System.out.println("Критична помилка в обчисленнях g(x).");
+                    System.err.println("Критична помилка в обчисленнях g(x).");
                 }
             });
 
@@ -99,6 +99,8 @@ class ClientHandler extends Thread {
             // Обчислення f(x) ^ g(x)
             int result = calculateResult(fxi, gxi);
             out.write("Успішне обчислення f(x) ^ g(x): " + result + "\n");
+            out.write("Кількість некритичних помилок f(x): " + Computation.getNonCriticalErrorsfx() + "\n");
+            out.write("Кількість некритичних помилок g(x): " + Computation.getNonCriticalErrorsgx() + "\n");
 
             out.flush();
 
@@ -120,55 +122,65 @@ class ClientHandler extends Thread {
         return fx ^ gx;
     }
 }
-
 class Computation {
     final static int CASE1_ATTEMPTS = 3;
     static int attempt = CASE1_ATTEMPTS;
 
-    public static Optional<Double> compfunc(int x_value,int n) {
+    static int nonCriticalErrorsfx = 0;
+
+    static int nonCriticalErrorsgx = 0;
+    static Random random = new Random();
+
+    public static Optional<Double> compfunc(int x_value, int n) {
         switch (n) {
             case 0:
-                try {
-                    TimeUnit.SECONDS.sleep(2);
-                } catch (InterruptedException ie) {
-                    // Тут можна обробити некритичну помилку, якщо вона виникла
-                    System.err.println("Некритична помилка в обчисленнях f(x).");
-                    return Optional.empty();
+                while (attempt > 0) {
+                    try {
+                        TimeUnit.SECONDS.sleep(2);
+                        attempt--;
+                        if (random.nextDouble() < 0.3) {
+                            nonCriticalErrorsfx++;
+                            System.err.println("Некритична помилка в обчисленнях f(x).");
+                        }
+                        // Повертаємо правильне значення f(x)
+                        return Optional.of(x_value + 10.00);
+                    } catch (InterruptedException ie) {
+                    }
                 }
-                // Повертаємо правильне значення f(x)
-                return Optional.of(x_value +10.00);
+                return Optional.empty();
 
             case 1:
-                try {
-                    TimeUnit.SECONDS.sleep(1);
-                } catch (InterruptedException ie) {
-                    // Тут можна обробити некритичну помилку, якщо вона виникла
-                    System.err.println("Некритична помилка в обчисленнях g(x).");
-                    return Optional.empty();
+                while (attempt > 0) {
+                    try {
+                        TimeUnit.SECONDS.sleep(2);
+                        attempt--;
+                        if (random.nextDouble() < 0.5) {
+                            nonCriticalErrorsgx++;
+                            System.err.println("Некритична помилка в обчисленнях g(x).");
+                        }
+                        // Повертаємо правильне значення f(x)
+                        else return Optional.of(x_value + 7.00);
+                    } catch (InterruptedException ie) {
+                    }
                 }
-                attempt--;
-                if (attempt != 0)
-                    return Optional.empty();
-                attempt = CASE1_ATTEMPTS;
-                // Повертаємо правильне значення g(x)
-                return Optional.of(x_value +5.00);
-
-            case 2:
-                try {
-                    TimeUnit.SECONDS.sleep(2);
-                } catch (InterruptedException ie) {
-                    // Тут можна обробити некритичну помилку, якщо вона виникла
-                    System.err.println("Некритична помилка в обчисленнях f(x).");
-                    return Optional.empty();
-                }
-                // Повертаємо правильне значення f(x)
-                return Optional.of(x_value + 7.00);
+                return Optional.empty();
 
             default:
                 // Обробка інших варіантів
-                try { Thread.currentThread().join(); } catch (InterruptedException ie) {}
+                try {
+                    Thread.currentThread().join();
+                } catch (InterruptedException ie) {
+                }
                 return Optional.empty();
         }
     }
+    public static int getNonCriticalErrorsfx() {
+        return nonCriticalErrorsfx;
+    }
+    public static int getNonCriticalErrorsgx() {
+        return nonCriticalErrorsgx;
+    }
 }
+
+
 
