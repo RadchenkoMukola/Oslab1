@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="397dea4f-8b5a-45d6-a769-89098c791e7f" name="Changes" comment="added more logic to Computation + error count">
-      <change afterPath="$PROJECT_DIR$/src/Manager.java" afterDir="false" />
+    <list default="true" id="397dea4f-8b5a-45d6-a769-89098c791e7f" name="Changes" comment="Created Sokets for f(x) g(x) separated Computation class deleted Client class replased Server class with Manager Soket class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Computation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Computation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +21,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -53,7 +56,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Option2&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -130,7 +133,8 @@
       <workItem from="1699192356283" duration="2130000" />
       <workItem from="1699253439880" duration="2400000" />
       <workItem from="1699521523611" duration="475000" />
-      <workItem from="1699562658802" duration="5118000" />
+      <workItem from="1699562658802" duration="5893000" />
+      <workItem from="1699860699382" duration="683000" />
     </task>
     <task id="LOCAL-00001" summary="added more logic to Computation + error count">
       <option name="closed" value="true" />
@@ -140,7 +144,23 @@
       <option name="project" value="LOCAL" />
       <updated>1699194440800</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Created Sokets for f(x) g(x) separated Computation class deleted Client class replased Server class with Manager Soket class">
+      <option name="closed" value="true" />
+      <created>1699568309036</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1699568309036</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Created Sokets for f(x) g(x) separated Computation class deleted Client class replased Server class with Manager Soket class">
+      <option name="closed" value="true" />
+      <created>1699568405538</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1699568405538</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,7 +168,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added more logic to Computation + error count" />
-    <option name="LAST_COMMIT_MESSAGE" value="added more logic to Computation + error count" />
+    <MESSAGE value="Created Sokets for f(x) g(x) separated Computation class deleted Client class replased Server class with Manager Soket class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created Sokets for f(x) g(x) separated Computation class deleted Client class replased Server class with Manager Soket class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
